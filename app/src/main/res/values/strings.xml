@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Battery Notifier</string>
+
+    <string name="action_favorite">Fav</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
