@@ -69,15 +69,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.action_rate:
                 // User chose the "Settings" item, show the app settings UI...
                 return true;
 
-            case R.id.action_favorite:
+            case R.id.action_fullversion:
                 // User chose the "Favorite" action, mark the current item
                 // as a favorite...
                 return true;
 
+            case R.id.action_exit:
+                finish();
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -86,4 +88,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    @Override
+    public void onBackPressed() { super.onBackPressed();
     }
+}
