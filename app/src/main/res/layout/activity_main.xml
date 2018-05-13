@@ -10,9 +10,7 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/my_toolbar"
-        android:background="@color/colorPrimaryDark"
-        android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"/>
+        android:id="@+id/my_toolbar"/>
 
 
     <FrameLayout
@@ -53,6 +51,33 @@
         android:visibility="invisible"
         android:id="@+id/main"
         android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/infoBox"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:background="@drawable/layout_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/batteryLevel"
+                android:textColor="#000"
+                android:textSize="32sp"
+                android:text="@string/battery_level"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chargingStatus"
+                android:textColor="#000"
+                android:textSize="32sp"
+                android:text="@string/charging_status"/>
+
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 
