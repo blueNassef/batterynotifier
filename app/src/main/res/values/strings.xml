@@ -6,4 +6,6 @@
     <string name="action_exit">Exit</string>
     <string name="battery_level">Battery level: </string>
     <string name="charging_status">Charging status: </string>
+    <string name="notify_full">Notify when fully charged: </string>
+    <string name="notify_reach">Notify when reaches: </string>
 </resources>
