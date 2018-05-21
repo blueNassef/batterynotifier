@@ -8,4 +8,5 @@
     <string name="charging_status">Charging status: </string>
     <string name="notify_full">Notify when fully charged: </string>
     <string name="notify_reach">Notify when reaches: </string>
+    <string name="notify_full_btn">Notify</string>
 </resources>

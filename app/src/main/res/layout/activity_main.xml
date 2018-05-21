@@ -13,12 +13,6 @@
         android:id="@+id/my_toolbar"/>
 
 
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -46,75 +40,80 @@
 
         </android.support.constraint.ConstraintLayout>
 
+
+
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:visibility="invisible"
         android:id="@+id/main"
-        android:layout_margin="10dp"
         android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/infoBox"
-            android:background="@drawable/layout_bg"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/batteryLevel"
-                android:textColor="#000"
-                android:textSize="32sp"
-                android:text="@string/battery_level"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/chargingStatus"
-                android:textColor="#000"
-                android:textSize="32sp"
-                android:text="@string/charging_status"/>
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/layout_bg"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/notify_full"
-                    android:textSize="32sp"
-                    android:textColor="#000"/>
-                <android.support.v7.widget.AppCompatCheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/infoBox"
+                android:layout_margin="10dp"
+                android:background="@drawable/layout_bg"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/notify_reach"
+                    android:id="@+id/batteryLevel"
+                    android:textColor="#000"
                     android:textSize="32sp"
-                    android:textColor="#000"/>
-                <android.support.v7.widget.AppCompatCheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:text="@string/battery_level"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chargingStatus"
+                    android:textColor="#000"
+                    android:textSize="32sp"
+                    android:text="@string/charging_status"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/notifyFull"
+                android:layout_margin="10dp"
+                android:background="@drawable/layout_bg"
+                android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/notify_full"
+                        android:textSize="32sp"
+                        android:textColor="#000"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/notifyReach"
+                android:layout_margin="10dp"
+                android:background="@drawable/layout_bg"
+                android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/notify_reach"
+                        android:textSize="32sp"
+                        android:textColor="#000"/>
+
             </LinearLayout>
 
         </LinearLayout>
