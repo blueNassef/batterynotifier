@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/batteryLevel"
                     android:textColor="#000"
-                    android:textSize="32sp"
+                    android:textSize="28sp"
                     android:text="@string/battery_level"/>
 
                 <TextView
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/chargingStatus"
                     android:textColor="#000"
-                    android:textSize="32sp"
+                    android:textSize="28sp"
                     android:text="@string/charging_status"/>
 
             </LinearLayout>

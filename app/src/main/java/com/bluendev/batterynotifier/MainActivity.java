@@ -1,6 +1,10 @@
 package com.bluendev.batterynotifier;
 
 
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
+import android.os.Build;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +16,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -19,7 +24,11 @@ public class MainActivity extends AppCompatActivity {
     ImageView batLogo, blueNLogo;
     Animation anim;
     ConstraintLayout entrance, main;
+    TextView batteryLevel, chargingStatus;
 
+    IntentFilter iFilter;
+    Intent batteryStatus;
+    int status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +38,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar= findViewById(R.id.my_toolbar);
         myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
+
+
+        iFilter= new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        batteryStatus= getApplicationContext().registerReceiver(null,iFilter);
+
+        status= batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS,-1);
+
+        boolean charging= status== BatteryManager.BATTERY_STATUS_CHARGING;
+        boolean discharging= status==  BatteryManager.BATTERY_STATUS_DISCHARGING;
+        boolean batFull= status== BatteryManager.BATTERY_STATUS_FULL;
+
 
 
 
@@ -59,6 +79,20 @@ public class MainActivity extends AppCompatActivity {
 
         batLogo.setAnimation(anim);
 
+
+
+        batteryLevel= findViewById(R.id.batteryLevel);
+        chargingStatus= findViewById(R.id.chargingStatus);
+
+        if(charging){
+            chargingStatus.append("Charging");
+        }else if(discharging){
+            chargingStatus.append("Discharging");
+        }else if(batFull){
+            chargingStatus.append("Full");
+        }
+
+
     }
 
     @Override
@@ -72,19 +106,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_rate:
-                // User chose the "Settings" item, show the app settings UI...
+
                 return true;
 
             case R.id.action_fullversion:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+
                 return true;
 
             case R.id.action_exit:
                 finish();
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
+
                 return super.onOptionsItemSelected(item);
 
             }
