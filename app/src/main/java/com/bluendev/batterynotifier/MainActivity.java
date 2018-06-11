@@ -1,10 +1,10 @@
 package com.bluendev.batterynotifier;
 
-
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
-import android.os.Build;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,31 +25,38 @@ public class MainActivity extends AppCompatActivity {
     Animation anim;
     ConstraintLayout entrance, main;
     TextView batteryLevel, chargingStatus;
+    private int level;
 
-    IntentFilter iFilter;
-    Intent batteryStatus;
-    int status;
+
+
+
+    private IntentFilter batFil = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+    private BroadcastReceiver batRec = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            level = intent.getIntExtra("level", 0);
+            batteryLevel.setText("Battery level: "+String.valueOf(level) + "%");
+            int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+            boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                    status == BatteryManager.BATTERY_STATUS_FULL;
+            if (isCharging) {
+                chargingStatus.setText("Battery status: "+"Charging");
+            } else {
+                chargingStatus.setText("Battery status: "+"Discharging");
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.registerReceiver(batRec, batFil);
 
         Toolbar myToolbar= findViewById(R.id.my_toolbar);
         myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
-
-
-        iFilter= new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        batteryStatus= getApplicationContext().registerReceiver(null,iFilter);
-
-        status= batteryStatus.getIntExtra(BatteryManager.EXTRA_STATUS,-1);
-
-        boolean charging= status== BatteryManager.BATTERY_STATUS_CHARGING;
-        boolean discharging= status==  BatteryManager.BATTERY_STATUS_DISCHARGING;
-        boolean batFull= status== BatteryManager.BATTERY_STATUS_FULL;
-
-
 
 
         anim= AnimationUtils.loadAnimation(this,R.anim.enlarge);
@@ -84,13 +91,6 @@ public class MainActivity extends AppCompatActivity {
         batteryLevel= findViewById(R.id.batteryLevel);
         chargingStatus= findViewById(R.id.chargingStatus);
 
-        if(charging){
-            chargingStatus.append("Charging");
-        }else if(discharging){
-            chargingStatus.append("Discharging");
-        }else if(batFull){
-            chargingStatus.append("Full");
-        }
 
 
     }
