@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 
@@ -25,27 +26,6 @@ public class MainActivity extends AppCompatActivity {
     Animation anim;
     ConstraintLayout entrance, main;
     TextView batteryLevel, chargingStatus;
-    private int level;
-
-
-
-
-    private IntentFilter batFil = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-    private BroadcastReceiver batRec = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            level = intent.getIntExtra("level", 0);
-            batteryLevel.setText("Battery level: "+String.valueOf(level) + "%");
-            int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
-            boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
-                    status == BatteryManager.BATTERY_STATUS_FULL;
-            if (isCharging) {
-                chargingStatus.setText("Battery status: "+"Charging");
-            } else {
-                chargingStatus.setText("Battery status: "+"Discharging");
-            }
-        }
-    };
 
 
     @Override
@@ -57,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar= findViewById(R.id.my_toolbar);
         myToolbar.setTitle("");
         setSupportActionBar(myToolbar);
+
+        batteryLevel= findViewById(R.id.batteryLevel);
+        chargingStatus= findViewById(R.id.chargingStatus);
 
 
         anim= AnimationUtils.loadAnimation(this,R.anim.enlarge);
@@ -85,12 +68,6 @@ public class MainActivity extends AppCompatActivity {
         main= findViewById(R.id.main);
 
         batLogo.setAnimation(anim);
-
-
-
-        batteryLevel= findViewById(R.id.batteryLevel);
-        chargingStatus= findViewById(R.id.chargingStatus);
-
 
 
     }
@@ -125,4 +102,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
     }
+
+    //receive battery level and charging status
+    private IntentFilter batFil = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+    private BroadcastReceiver batRec = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int level = intent.getIntExtra("level", 0);
+            batteryLevel.setText("Battery level: "+String.valueOf(level) + "%");
+            int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+            boolean isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                    status == BatteryManager.BATTERY_STATUS_FULL;
+            if (isCharging) {
+                chargingStatus.setText("Battery status: "+"Charging");
+            } else {
+                chargingStatus.setText("Battery status: "+"Discharging");
+            }
+        }
+    };
 }
