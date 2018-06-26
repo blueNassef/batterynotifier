@@ -16,8 +16,8 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -27,12 +27,15 @@ public class MainActivity extends AppCompatActivity {
     ConstraintLayout entrance, main;
     TextView batteryLevel, chargingStatus;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.registerReceiver(batRec, batFil);
+
+
+
+
 
         Toolbar myToolbar= findViewById(R.id.my_toolbar);
         myToolbar.setTitle("");

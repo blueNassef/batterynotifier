@@ -18,6 +18,7 @@
             android:layout_height="match_parent"
             android:id="@+id/intrance">
 
+
             <ImageView
                 android:id="@+id/batLogo"
                 android:layout_width="220dp"
@@ -85,14 +86,25 @@
                 android:id="@+id/notifyFull"
                 android:layout_margin="10dp"
                 android:background="@drawable/layout_bg"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/notify_full"
-                        android:textSize="32sp"
-                        android:textColor="#000"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notify_full"
+                    android:textSize="32sp"
+                    android:textColor="#000"/>
+
+                <Switch
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textOn="On"
+                    android:textOff="Off"
+                    android:layout_gravity="center_horizontal"
+                    android:thumbTextPadding="24dp"
+                    android:thumb="@drawable/switch_thumb"
+                    android:track="@drawable/switch_track" />
 
 
             </LinearLayout>
